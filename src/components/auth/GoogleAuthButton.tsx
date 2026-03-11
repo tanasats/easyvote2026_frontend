@@ -85,7 +85,7 @@ export default function GoogleAuthButton() {
         )}
         <span>Sign in with Google</span>
       </button>
-      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+      {error && <p className="text-red-500 mt-2">{error}</p>}
     </div>
   );
 }

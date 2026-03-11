@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sarabun } from "next/font/google";
 import "./globals.css";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { BugIcon } from "lucide-react";
 
 const sarabun = Sarabun({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
@@ -30,7 +31,7 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto px-4">
               <p className="text-sm font-semibold text-gray-900 mb-1">EasyVote &copy; {new Date().getFullYear()} v1.0.0</p>
               <p className="text-xs text-gray-500">งานพัฒนาระบบสารสนเทศ สำนักคอมพิวเตอร์ มหาวิทยาลัยมหาสารคาม</p>
-              <p className="text-xs text-gray-500">พัฒนาโดย ❤️ <span className="font-bold text-indigo-600">ธนศาสตร์ สุดจริง</span></p>
+              <p className="text-xs text-gray-500"><BugIcon className="inline w-4 h-4" /> พัฒนาโดย <span className="font-bold text-indigo-600">ธนศาสตร์ สุดจริง</span></p>
             </div>
           </footer>
         </GoogleOAuthProvider>

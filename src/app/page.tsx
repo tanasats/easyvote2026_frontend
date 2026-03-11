@@ -276,7 +276,7 @@ export default function Home() {
             <p className="text-lg text-indigo-700/80 mb-8">
               ล็อคอินด้วยบัญชี Google ของมหาวิทยาลัย เพื่อตรวจสอบสิทธิในการลงคะแนนเลือกตั้งของคุณ
             </p>
-            <div className="inline-block p-1 bg-white rounded-full shadow-md">
+            <div className="inline-block p-1">
               <GoogleAuthButton />
             </div>
           </div>
@@ -315,7 +315,7 @@ export default function Home() {
             <p className="text-lg text-purple-700/80 mb-8">
               เข้าสู่ระบบเพื่อใช้สิทธิลงคะแนนเสียงของคุณอย่างเป็นความลับและปลอดภัย
             </p>
-            <div className="inline-block p-1 bg-white rounded-full shadow-md">
+            <div className="inline-block p-1">
               <GoogleAuthButton />
             </div>
           </div>

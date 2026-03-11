@@ -71,8 +71,8 @@ export default function VotePage() {
     const interval = setInterval(() => {
       const now = new Date();
       if (now > endTime) {
-         setTimeExpired(true);
-         setShowConfirm(false); // Force close confirmation modal
+        setTimeExpired(true);
+        setShowConfirm(false); // Force close confirmation modal
       }
     }, 1000);
     return () => clearInterval(interval);
@@ -83,9 +83,9 @@ export default function VotePage() {
 
     // Local Check just before network request
     if (endTime && new Date() > endTime) {
-       setTimeExpired(true);
-       setShowConfirm(false);
-       return;
+      setTimeExpired(true);
+      setShowConfirm(false);
+      return;
     }
 
     setSubmitting(true);
@@ -159,11 +159,11 @@ export default function VotePage() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 space-y-4">
         {timeExpired ? (
           <div className="bg-red-50 text-red-700 p-6 rounded-2xl border border-red-200 text-center shadow-sm">
-             <h2 className="text-lg font-bold mb-2">Voting Has Concluded</h2>
-             <p className="text-sm">The election time has expired. You can no longer cast a ballot.</p>
-             <button onClick={() => router.push('/dashboard')} className="mt-4 px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-xl transition">
-               Return to Dashboard
-             </button>
+            <h2 className="text-lg font-bold mb-2">Voting Has Concluded</h2>
+            <p className="text-sm">The election time has expired. You can no longer cast a ballot.</p>
+            <button onClick={() => router.push('/dashboard')} className="mt-4 px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-xl transition">
+              Return to Dashboard
+            </button>
           </div>
         ) : error ? (
           <div className="bg-red-50 text-red-600 text-sm p-4 rounded-xl border border-red-100">
@@ -172,8 +172,8 @@ export default function VotePage() {
         ) : null}
 
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900">คูหาเลือกตั้ง (Voting booth)</h1>
-          <p className="text-xs text-gray-500">Select one candidate or abstain from voting</p>
+          <h1 className="text-3xl font-bold text-gray-900">คูหาเลือกตั้ง (Voting booth)</h1>
+          <p className="text text-gray-500">Select one candidate or abstain from voting<br />เลือกผู้สมัคร 1 คน หรือ ไม่ประสงค์ลงคะแนน</p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {candidates.map((candidate) => (
@@ -189,33 +189,33 @@ export default function VotePage() {
             >
               {/* Image Header */}
               <div className="relative aspect-square w-full bg-gray-50 border-b border-gray-100 flex-shrink-0">
-                 {candidate.is_no_vote ? (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                       <span className="text-gray-400 font-bold text-6xl">X</span>
+                {candidate.is_no_vote ? (
+                  <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                    <span className="text-gray-400 font-bold text-6xl">X</span>
+                  </div>
+                ) : (
+                  <img
+                    src={getImageUrl(candidate.image_url)}
+                    alt={candidate.name}
+                    className="absolute inset-0 w-full h-full object-cover object-top"
+                  />
+                )}
+                {selectedCandidate === candidate.id && (
+                  <div className="absolute inset-0 bg-indigo-600/10 flex items-start justify-end p-4">
+                    <div className="bg-white rounded-full p-1 shadow-md">
+                      <CheckCircle2 className="w-6 h-6 text-indigo-600" />
                     </div>
-                 ) : (
-                    <img 
-                       src={getImageUrl(candidate.image_url)} 
-                       alt={candidate.name} 
-                       className="absolute inset-0 w-full h-full object-cover object-top" 
-                    />
-                 )}
-                 {selectedCandidate === candidate.id && (
-                    <div className="absolute inset-0 bg-indigo-600/10 flex items-start justify-end p-4">
-                      <div className="bg-white rounded-full p-1 shadow-md">
-                        <CheckCircle2 className="w-6 h-6 text-indigo-600" />
-                      </div>
-                    </div>
-                 )}
+                  </div>
+                )}
               </div>
 
               {/* Info Body */}
               <div className="p-5 flex flex-col flex-1">
                 <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-1" title={candidate.name}>{candidate.name}</h3>
                 {candidate.position && (
-                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3 w-fit border border-indigo-100">
-                      {candidate.position}
-                   </span>
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3 w-fit border border-indigo-100">
+                    {candidate.position}
+                  </span>
                 )}
                 <p className="text-sm text-gray-500 line-clamp-3 mt-auto">{candidate.biography}</p>
               </div>
@@ -259,8 +259,13 @@ export default function VotePage() {
               exit={{ scale: 0.95, opacity: 0 }}
               className="bg-white rounded-3xl w-full max-w-sm p-6 shadow-2xl relative overflow-hidden"
             >
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Confirm Your Vote</h3>
-              <p className="text-gray-500 text-sm mb-6">You are about to securely cast your vote for <strong>{candidates.find(c => c.id === selectedCandidate)?.name}</strong>. This action is final and completely anonymous.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">ยืนยันการลงคะแนน <br />(Confirm Your Vote)</h3>
+
+              <p className='indent-8'>
+                คุณกำลังจะลงคะแนนเสียงอย่างปลอดภัยให้กับ <strong className='text-blue-600'>{candidates.find(c => c.id === selectedCandidate)?.name}</strong>. การดำเนินการนี้ถือเป็นที่สิ้นสุดและเป็นความลับอย่างสมบูรณ์
+              </p>
+
+              <p className="indent-8 text-gray-500  mb-6">You are about to securely cast your vote for <strong className='text-blue-600'>{candidates.find(c => c.id === selectedCandidate)?.name}</strong>. This action is final and completely anonymous.</p>
 
               <div className="flex flex-col gap-3">
                 <button

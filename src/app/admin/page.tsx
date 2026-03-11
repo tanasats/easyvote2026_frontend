@@ -22,6 +22,9 @@ export default function AdminDashboard() {
   // Layout State
   const [activeTab, setActiveTab] = useState<'results' | 'settings' | 'candidates' | 'banners'>('results');
 
+  // Filter State for Results
+  const [facultyFilter, setFacultyFilter] = useState<'all' | 'with_candidates'>('all');
+
   // Settings State
   const [startTime, setStartTime] = useState<string>('');
   const [endTime, setEndTime] = useState<string>('');
@@ -175,6 +178,11 @@ export default function AdminDashboard() {
   const overallVoted = reports.reduce((sum, r) => sum + parseInt(r.total_voted || '0'), 0);
   const overallPercentage = overallEligible > 0 ? ((overallVoted / overallEligible) * 100).toFixed(1) : '0.0';
 
+  const filteredReports = reports.filter((report) => {
+    if (facultyFilter === 'all') return true;
+    return report.candidates && report.candidates.length > 0;
+  });
+
   return (
     <main className="min-h-screen bg-gray-50 pb-24">
       {/* Header */}
@@ -260,10 +268,18 @@ export default function AdminDashboard() {
                   <Building2 className="w-5 h-5 text-indigo-500" />
                   <h2 className="text-lg font-bold text-gray-900">Turnout by Faculty</h2>
                 </div>
+                <select 
+                  value={facultyFilter} 
+                  onChange={(e) => setFacultyFilter(e.target.value as 'all' | 'with_candidates')}
+                  className="bg-white border border-gray-200 text-gray-700 py-1.5 px-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium text-sm cursor-pointer"
+                >
+                  <option value="all">แสดงทั้งหมด (All Faculties)</option>
+                  <option value="with_candidates">เฉพาะคณะที่มีผู้สมัคร (With Candidates)</option>
+                </select>
               </div>
 
               <div className="p-6 grid gap-6 md:grid-cols-2">
-                {reports.map((report) => (
+                {filteredReports.map((report) => (
                   <div key={report.faculty_code} className="border border-gray-200 rounded-xl overflow-hidden shadow-sm flex flex-col bg-white hover:shadow-md transition-shadow">
                     <div className="bg-gray-50 p-4 border-b border-gray-200">
                       <div className="flex justify-between items-start mb-2">
@@ -314,10 +330,10 @@ export default function AdminDashboard() {
                   </div>
                 ))}
 
-                {reports.length === 0 && (
+                {filteredReports.length === 0 && (
                   <div className="col-span-full py-12 text-center text-gray-500">
                     <Building2 className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                    <p>No faculty reports available.</p>
+                    <p>ไม่มีข้อมูลคณะที่ตรงตามตัวกรอง (No faculty reports matching your filter)</p>
                   </div>
                 )}
               </div>

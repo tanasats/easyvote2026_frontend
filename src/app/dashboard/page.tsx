@@ -90,7 +90,7 @@ export default function Dashboard() {
             {user.role === 'voter' ? (
               <div className="flex flex-wrap items-center gap-3 mt-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 border border-green-200">
-                  <ShieldCheck className="w-3.5 h-3.5" /> Eligible Voter
+                  <ShieldCheck className="w-3.5 h-3.5" /> ผู้มีสิทธิ์เลือกตั้ง (Eligible Voter)
                 </span>
                 <span className="text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">
                   ID: {user.student_id}
@@ -134,7 +134,10 @@ export default function Dashboard() {
                 <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
                   <ShieldCheck className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">You Have Successfully Voted</h3>
+                <h3 className="text-2xl font-bold text-gray-900">คุณได้ทำการหย่อนบัตรเลือกตั้งแล้ว <br />(You Have Successfully Voted)</h3>
+                <p className="text-gray-500 max-w-md mx-auto">
+                  บัตรลงคะแนนนิรนามของคุณได้รับการบันทึกไว้ในระบบอย่างปลอดภัยแล้ว ขอบคุณที่เข้าร่วมการเลือกตั้งครั้งนี้
+                </p>
                 <p className="text-gray-500 max-w-md mx-auto">
                   Your anonymous ballot has been securely recorded in the system. Thank you for participating in the EasyVote 2026 election.
                 </p>
@@ -146,9 +149,12 @@ export default function Dashboard() {
                     <div className="w-16 h-16 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-2">
                       <Vote className="w-8 h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">Election Has Not Started</h3>
+                    <h3 className="text-xl font-bold text-gray-900">ยังไม่เปิดหีบลงคะแนน (Election Has Not Started)</h3>
                     <p className="text-gray-500 max-w-md mx-auto">
                       Your eligibility has been confirmed, but the polls are not yet open. Please return to your dashboard when the election period begins.
+                    </p>
+                    <p className="text-gray-500 max-w-md mx-auto">
+                      คุณมีสิทธิ์เลือกตั้งแล้ว แต่ยังไม่ถึงเวลาเปิดหีบ กรุณากลับมาที่หน้าแดชบอร์ดอีกครั้งเมื่อการเลือกตั้งเริ่มขึ้น
                     </p>
                   </>
                 )}
@@ -158,12 +164,15 @@ export default function Dashboard() {
                     <div className="w-16 h-16 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2">
                       <Vote className="w-8 h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">The Polls Are Open</h3>
+                    <h3 className="text-xl font-bold text-gray-900">เปิดหีบลงคะแนน (The Polls Are Open)</h3>
+                    <p className="text-gray-500 max-w-md mx-auto">
+                      คุณมีสิทธิ์เลือกตั้งแล้ว และหีบลงคะแนนเปิดแล้ว กรุณากดปุ่มด้านล่างเพื่อไปยังหน้าลงคะแนน
+                    </p>
                     <p className="text-gray-500 max-w-md mx-auto mb-6">
                       You are eligible to vote. Click the button below to proceed to the secure, anonymous ballot interface.
                     </p>
                     <Link href="/vote" className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 transition-all active:scale-95">
-                      Go to Voting Area <Vote className="w-5 h-5" />
+                      เข้าคูหาเลือกตั้ง <Vote className="w-5 h-5" />
                     </Link>
                   </>
                 )}
@@ -173,7 +182,7 @@ export default function Dashboard() {
                     <div className="w-16 h-16 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-2">
                       <ShieldCheck className="w-8 h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">Election Has Ended</h3>
+                    <h3 className="text-xl font-bold text-gray-900">ปิดหีบลงคะแนน (Election Has Ended)</h3>
                     <p className="text-gray-500 max-w-md mx-auto">
                       The voting period has officially closed. You cannot cast a vote at this time.
                     </p>
