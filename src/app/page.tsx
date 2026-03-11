@@ -125,7 +125,7 @@ export default function Home() {
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 text-center pointer-events-none">
           {banners.length === 0 && (
             <div className="hidden sm:block pointer-events-auto">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 text-indigo-100 backdrop-blur-sm border border-white/20 mb-4 sm:mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/20 text-indigo-100 backdrop-blur-sm border border-white/20 mb-4 sm:mb-8">
                 <Vote className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
                 <span className="text-xs sm:text-sm font-semibold tracking-wide uppercase">EasyVote 2026</span>
               </div>
@@ -142,27 +142,27 @@ export default function Home() {
           <div className="pointer-events-auto mt-8">
             <div className="flex flex-col items-center justify-center gap-6">
               {electionStatus === 'upcoming' && timeLeftToStart && (
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/20 shadow-2xl max-w-lg w-full">
+                <div className="bg-black/20 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/20 shadow-2xl max-w-lg w-full">
                   <div className="flex items-center justify-center gap-2 mb-4 text-indigo-200">
                     <Clock className="w-5 h-5" />
-                    <span className="font-semibold text-sm uppercase tracking-wider">Voting Opens In</span>
+                    <span className="font-semibold text-sm uppercase tracking-wider">Voting Opens In <br />(นับถอยหลังการเลือกตั้ง)</span>
                   </div>
 
                   <div className="grid grid-cols-4 gap-6 text-white">
-                    <div className="flex flex-col"><span className="text-4xl sm:text-5xl font-bold font-mono">{timeLeftToStart.days}</span><span className="text-xs text-indigo-200 mt-1 uppercase">Days</span></div>
-                    <div className="flex flex-col"><span className="text-4xl sm:text-5xl font-bold font-mono">{timeLeftToStart.hours.toString().padStart(2, '0')}</span><span className="text-xs text-indigo-200 mt-1 uppercase">Hours</span></div>
-                    <div className="flex flex-col"><span className="text-4xl sm:text-5xl font-bold font-mono">{timeLeftToStart.minutes.toString().padStart(2, '0')}</span><span className="text-xs text-indigo-200 mt-1 uppercase">Mins</span></div>
-                    <div className="flex flex-col"><span className="text-4xl sm:text-5xl font-bold font-mono">{timeLeftToStart.seconds.toString().padStart(2, '0')}</span><span className="text-xs text-indigo-200 mt-1 uppercase">Secs</span></div>
+                    <div className="flex flex-col"><span className="text-4xl sm:text-5xl lg:text-6xl font-bold font-mono">{timeLeftToStart.days}</span><span className="text-xs text-indigo-200 mt-1 uppercase">Days</span></div>
+                    <div className="flex flex-col"><span className="text-4xl sm:text-5xl lg:text-6xl font-bold font-mono">{timeLeftToStart.hours.toString().padStart(2, '0')}</span><span className="text-xs text-indigo-200 mt-1 uppercase">Hours</span></div>
+                    <div className="flex flex-col"><span className="text-4xl sm:text-5xl lg:text-6xl font-bold font-mono">{timeLeftToStart.minutes.toString().padStart(2, '0')}</span><span className="text-xs text-indigo-200 mt-1 uppercase">Mins</span></div>
+                    <div className="flex flex-col"><span className="text-4xl sm:text-5xl lg:text-6xl font-bold font-mono">{timeLeftToStart.seconds.toString().padStart(2, '0')}</span><span className="text-xs text-indigo-200 mt-1 uppercase">Secs</span></div>
                   </div>
                 </div>
               )}
 
               {electionStatus === 'active' && (
-                <div className="bg-white/10 backdrop-blur-md p-8 rounded-3xl shadow-2xl max-w-md w-full border border-white/20 flex flex-col items-center">
+                <div className="bg-black/20 backdrop-blur-md p-8 rounded-3xl shadow-2xl max-w-md w-full border border-white/20 flex flex-col items-center">
                   <div className="w-16 h-16 bg-green-400 text-green-900 rounded-full flex items-center justify-center mb-4 shadow-lg shadow-green-500/30">
                     <Vote className="w-8 h-8" />
                   </div>
-                  <h2 className="text-2xl font-bold text-white mb-2">The Polls Are Open (เปิดหีบลงคะแนน)</h2>
+                  <h2 className="text-2xl font-bold text-white mb-2">The Polls Are Open <br />(เปิดหีบลงคะแนน)</h2>
                   <p className="text-indigo-100 text-center text-sm">It's time to make your voice heard.</p>
                   <div className="mt-4 flex flex-col items-center">
                     <GoogleAuthButton />
@@ -171,11 +171,11 @@ export default function Home() {
               )}
 
               {electionStatus === 'ended' && (
-                <div className="bg-white/10 backdrop-blur-md p-8 rounded-3xl shadow-2xl max-w-md w-full border border-white/20 flex flex-col items-center">
+                <div className="bg-black/20 backdrop-blur-md p-8 rounded-3xl shadow-2xl max-w-md w-full border border-white/20 flex flex-col items-center">
                   <div className="w-16 h-16 bg-gray-400 text-white rounded-full flex items-center justify-center mb-4 shadow-lg shadow-gray-500/30">
                     <ShieldCheck className="w-8 h-8" />
                   </div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Election Concluded (ปิดหีบลงคะแนน)</h2>
+                  <h2 className="text-2xl font-bold text-white mb-2">Election Concluded <br />(ปิดหีบลงคะแนน)</h2>
                   <p className="text-indigo-100 text-center text-sm">Thank you to everyone who participated. Polls are now officially closed.</p>
                 </div>
               )}
@@ -183,7 +183,7 @@ export default function Home() {
               {/* Universal Login Button
             <div className="mt-4 flex flex-col items-center">
               <p className="text-indigo-200 text-sm mb-4 font-medium tracking-wide drop-shadow-md">Log in to view your Voter Dashboard</p>
-              <div className="p-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-xl">
+              <div className="p-1.5 bg-black/20 backdrop-blur-md rounded-full border border-white/20 shadow-xl">
                 <GoogleAuthButton />
               </div>
             </div> */}
@@ -336,12 +336,15 @@ export default function Home() {
                 บัณฑิตวิทยาลัย<br />มหาวิทยาลัยมหาสารคาม<br />ผู้ประสานงาน: นางลภัสรดา นรินยา <br />โทรศัพท์: 0-4375-4412 เบอร์ภายใน 1656
               </span>
             </div>
+            <div className="hidden md:block text-gray-700 font-medium text-sm text-center">
+              ร่วมกับ
+            </div>
             <div className="flex flex-col items-center gap-4 group">
               <div className="relative w-32 h-32 flex items-center justify-center p-2 ">
                 <img src="/ccmsu_logo.png" alt="สำนักคอมพิวเตอร์ มหาวิทยาลัยมหาสารคาม" className="max-w-full max-h-full object-contain rounded-xl drop-shadow-sm" />
               </div>
               <span className="text-gray-700 font-medium text-sm text-center">
-                สำนักคอมพิวเตอร์<br />มหาวิทยาลัยมหาสารคาม<br />ผู้ประสานงาน: นายธนศาสตร์ สุดจริง <br />โทรศัพท์: 0-4371-9800 ต่อ 2458
+                สำนักคอมพิวเตอร์<br />มหาวิทยาลัยมหาสารคาม<br />ผู้ประสานงาน: นายธนศาสตร์ สุดจริง <br />โทรศัพท์: 0-4371-9800 เบอร์ภายใน 2458
               </span>
             </div>
           </div>
